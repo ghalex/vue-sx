@@ -1,11 +1,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Btn, Count } from './components'
+import { Count } from './components'
 import { ThemeProvider } from '@/lib'
 import { theme } from './theme'
 
 export default defineComponent({
-  components: { Btn, Count, ThemeProvider },
+  components: { Count, ThemeProvider },
   setup() {
     const currentTheme = ref(theme)
 
@@ -17,7 +17,6 @@ export default defineComponent({
 <template>
   <ThemeProvider :theme="currentTheme">
     <div>
-      <img alt="Vue logo" src="./assets/logo.png" />
       <Count msg="Hello!" />
     </div>
   </ThemeProvider>

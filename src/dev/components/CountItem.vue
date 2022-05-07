@@ -2,14 +2,13 @@
 
 <script setup lang="tsx">
 import { ref } from 'vue'
-import ExBtb from './ExButton.vue'
-
-import { styled } from '@/lib'
+import { styled, Box } from '@/lib'
+import type { Sx } from '@/lib/types';
 
 const Custom = styled('div')({
   border: '1px solid red',
   bg: 'purple',
-  display: 'inline',
+  color: 'white',
   m: [5, 3, 0]
 })
 
@@ -24,15 +23,22 @@ const handleCount = () => {
 
 const jsx = () => (
   <div>
-    <h1>{msg}</h1>
-    <button type="button" onClick={handleCount} >count is: {count.value}</button>
-    <ExBtb onClick={handleCount} count={count.value}>ButtonX</ExBtb>
-    {count.value > 3 && <div>Wooow!</div>}
+    <h1>{msg}, count is: {count.value}</h1>
+    {count.value > 3 && <div>Wooow! You counted to 3</div>}
+
+    <Box
+      sx={{
+        bg: (theme) => theme.colors.primary,
+        color: 'white',
+        '&:hover': {
+          backgroundColor: 'red'
+        }
+      }}
+      as="div"
+      onClick={handleCount}>
+      Count Up
+    </Box>
     <Custom>Meeee</Custom>
   </div>
 )
-
 </script>
-
-<style scoped>
-</style>

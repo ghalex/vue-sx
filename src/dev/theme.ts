@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    primary: '#CF4388',
+    primary: 'purple',
     secondary: 'red'
   },
   padding: 8

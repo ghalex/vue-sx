@@ -4,6 +4,8 @@
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "dist/types",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
