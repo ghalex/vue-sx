@@ -21,7 +21,7 @@
 
 ## Introduction
 
-vue-sx in using [styled-system](https://styled-system.com/) and [emotion](emotion.sh) to allow you to write simple and clean css-in-js for Vue components. Inspired by `sx` prop from [@mui/material
+vue-sx is using [styled-system](https://styled-system.com/) and [emotion](emotion.sh) to allow you to write simple and clean css-in-js for Vue components. Inspired by `sx` prop from [@mui/material
 ](https://mui.com/system/basics/#the-sx-prop)
 
 Some of the key features are:
@@ -40,15 +40,22 @@ npm i vue-sx
 ```vue
 <script>
 import { defineComponent } from 'vue'
-import { Box } from 'vue-sx'
+import { Box, styled } from 'vue-sx'
+
+const Custom = styled('div')({
+  border: '1px solid red',
+  bg: 'purple',
+  color: 'white',
+  m: [5, 3, 0]
+})
 
 export default defineComponent({
-  components: { Box }
+  components: { Box, Custom }
 })
 </script>
 
 <template>
-  <div>
+  <Custom>
     <Box
       sx={{
         bg: (theme) => theme.colors.primary,
@@ -60,7 +67,7 @@ export default defineComponent({
       >
       Click me
     </Box>
-  </div>
+  </Custom>
 </template>
 ```
 
@@ -81,4 +88,51 @@ This allows you to share design constraints for typography, color, and layout th
     color: 'primary',
   }"
 />
+```
+
+## Theming
+
+To add a theme to an application, import the `ThemeProvider` component from `vue-sx` and pass a custom theme object in.
+
+```vue
+<script>
+import { ref, defineComponent } from 'vue'
+import { Box, ThemeProvider } from 'vue-sx'
+
+const theme = {
+  breakpoints: [
+    '40em', '52em', '64em',
+  ],
+  colors: {
+    text: '#000',
+    background: '#fff',
+    primary: '#07c',
+  },
+  space: [
+    0, 4, 8, 16, 32, 64, 128, 256,
+  ],
+}
+
+export default defineComponent({
+  components: { Box, Custom },
+  setup() {
+    const currentTheme = ref(theme)
+    return { currentTheme }
+  }
+})
+</script>
+
+<template>
+  <ThemeProvider :theme="currentTheme">
+    <Box
+      :sx="{
+        border: '1px solid red',
+        bg: theme => theme.colors.primary,
+        p: 4,
+        mr: 4
+      }">
+      It works
+    </Box>
+  </ThemeProvider>
+</template>
 ```
