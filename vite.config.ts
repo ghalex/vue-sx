@@ -10,17 +10,17 @@ const srcDir = path.resolve(__dirname, 'src')
 export default defineConfig({
   plugins: [
     {
-    ...typescript({
-      tsconfigOverride: {
-        declaration: true,
-        declarationDir: "dist/types",
-        exclude: ['src/dev']
-      }
-    }),
-    apply: 'build'
-  },
-  vue(),
-  vueJsx()
+      ...typescript({
+        tsconfigOverride: {
+          declaration: true,
+          declarationDir: "dist/types",
+          exclude: ['src/dev']
+        }
+      }),
+      apply: 'build'
+    },  
+    vue(),
+    vueJsx()
   ],
   resolve: {
     alias: [

@@ -1,5 +1,5 @@
 // import { App, Plugin } from 'vue'
 export { default as Box } from './components/Box.vue'
 export { default as ThemeProvider } from './components/ThemeProvider.vue'
-export * from './types'
+
 export { default as styled } from './styled'

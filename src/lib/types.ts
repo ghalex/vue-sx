@@ -1,8 +1,9 @@
 
 
 export interface Theme {
-  colors: {[key: string]: string | string[]},
-  fonts: {[key: string]: string},
+  colors: {[key: string]: string | string[]}
+  fonts: {[key: string]: string}
+  breakpoints: string[]
   fontSizes: number[]
   space: number[]
   shadows: any
