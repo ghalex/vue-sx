@@ -1,16 +1,84 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center">VueSx</h1>
+<h3 align="center">CSS-in-JS for Vue</h3>
+<p align="center">
+<b>vue-sx</b> is a simple library that allows you to write clean CSS-in-JS for Vue
+</p>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+<p align="center">
+<a title="Total downloads" href="https://www.npmjs.com/package/vue-sx">
+    <img src="https://img.shields.io/npm/dm/vue-sx.svg?style=flat-square">
+  </a>
+  <a title="Current version" href="https://www.npmjs.com/package/vue-sx">
+    <img src="https://img.shields.io/npm/v/vue-sx.svg?style=flat-square">
+  </a>
+  <a title="MIT License" href="LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/ghalex/vue-sx?style=flat-square">
+  </a>
+  <br>
+  <br>
+</p>
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## Introduction
 
-## Type Support For `.vue` Imports in TS
+vue-sx in using [styled-system](https://styled-system.com/) and [emotion](emotion.sh) to allow you to write simple and clean css-in-js for Vue components. Inspired by `sx` prop from [@mui/material
+](https://mui.com/system/basics/#the-sx-prop)
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+Some of the key features are:
+- Customize styles inline with the `sx` prop
+- Ergonomic responsive array-based values
+- [Styled System](https://styled-system.com/) props
+- Themeable and compatible with the [Theme Specification](https://styled-system.com/theme-specification)
+- Built with [Emotion](emotion.sh) css prop
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+## Getting Started
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+```sh
+npm i vue-sx
+```
+
+```vue
+<script>
+import { defineComponent } from 'vue'
+import { Box } from 'vue-sx'
+
+export default defineComponent({
+  components: { Box }
+})
+</script>
+
+<template>
+  <div>
+    <Box
+      sx={{
+        bg: (theme) => theme.colors.primary,
+        color: 'white',
+        p: 2, // theme.space[2],
+        mt: 2 
+      }}
+      as="button"
+      >
+      Click me
+    </Box>
+  </div>
+</template>
+```
+
+### `sx` Prop
+
+The `Box` components accepts a `sx` prop that works with no additional setup required.
+
+The `sx` prop is similar to Emotion's `css` prop, but allows you to use values derived from the theme object.
+
+Box follows the [Theme Specification](), which means that any theme created for use with [Theme UI](), [Styled System](), or other similar libraries will work out-of-the-box.
+
+This allows you to share design constraints for typography, color, and layout throughout your application using a theming context.
+
+```vue
+<Box
+  :sx="{
+    p: 4,
+    color: 'primary',
+  }"
+/>
+```
